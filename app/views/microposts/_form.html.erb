@@ -1,0 +1,20 @@
+<%= simple_form_for @micropost, html: {class: "well col-sm-6 col-md-4 form-horizontal"} do |f| %>
+      <% if @micropost.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
+
+          <ul>
+          <% @micropost.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h4>What's New</h4>
+        <div class="form-group" style="padding:14px;">
+          <%= f.input :content, placeholder: "Update your status", label: false  %>
+        </div>
+        <%= f.submit "Post", :class => "btn btn-primary pull-right" %>
+    
+    <% end %>

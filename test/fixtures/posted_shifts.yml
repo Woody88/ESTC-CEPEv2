@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: MyString
+  date: 2015-02-20 17:16:36
+  start_time: 2015-02-20 17:16:36
+  finish_time: 2015-02-20 17:16:36
+  seller_id: 1
+  buyer_id: 1
+  status: MyString
+
+two:
+  position: MyString
+  date: 2015-02-20 17:16:36
+  start_time: 2015-02-20 17:16:36
+  finish_time: 2015-02-20 17:16:36
+  seller_id: 1
+  buyer_id: 1
+  status: MyString

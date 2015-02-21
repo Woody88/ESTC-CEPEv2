@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @posted_shift.position %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @posted_shift.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @posted_shift.start_time %>
+</p>
+
+<p>
+  <strong>Finish time:</strong>
+  <%= @posted_shift.finish_time %>
+</p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= @posted_shift.seller_id %>
+</p>
+
+<p>
+  <strong>Buyer:</strong>
+  <%= @posted_shift.buyer_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @posted_shift.status %>
+</p>
+
+<%= link_to 'Edit', edit_posted_shift_path(@posted_shift) %> |
+<%= link_to 'Back', posted_shifts_path %>

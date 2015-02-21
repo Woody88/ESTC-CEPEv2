@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shift_id: 
+  seller_id: 
+  buyer_id: 1
+
+two:
+  shift_id: 
+  seller_id: 
+  buyer_id: 1

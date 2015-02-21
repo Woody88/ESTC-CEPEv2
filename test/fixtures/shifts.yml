@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: MyString
+  date: 2015-02-19 10:37:58
+  start_stime: 2015-02-19 10:37:58
+  finish_time: 2015-02-19 10:37:58
+  original_owner: 1
+  current_owner: 1
+  shift_id: 1
+  shift_posted: MyString
+
+two:
+  position: MyString
+  date: 2015-02-19 10:37:58
+  start_stime: 2015-02-19 10:37:58
+  finish_time: 2015-02-19 10:37:58
+  original_owner: 1
+  current_owner: 1
+  shift_id: 1
+  shift_posted: MyString

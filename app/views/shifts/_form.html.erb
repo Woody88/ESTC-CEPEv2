@@ -1,0 +1,35 @@
+<%= simple_form_for(@shift) do |f| %>
+  <%= f.error_notification %>
+
+  
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :position, collection: Shift::POSITIONS %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :date, as: :date, as: :string %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns col-md-2">
+      <%= f.input :start_time, as: :time, as: :string %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns col-md-2">
+    <%= f.input :finish_time, as: :time, as: :string %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :shift_posted %>
+    </div>
+  </div>
+    <%= f.button :submit %>
+  </div>
+<% end %>

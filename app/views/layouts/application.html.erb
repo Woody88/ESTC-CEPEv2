@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESTCv2</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<%- # <p class="notice"><%= notice </p><p class="alert"><%= alert </p>%>
+    <!--<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <%= link_to 'ESTC-CEPE', root_path, {:class => "navbar-brand"} %> </div>
+               
+    <div class="row">
+            <div class="col-md-2 left-sidebar">
+                <nav class="main-nav">
+
+                </nav>
+            </div>
+    </div>-->
+
+  <div class="wrapper">
+    <div class="box">
+        <div class="row row-offcanvas row-offcanvas-left">
+                      
+          
+            <!-- sidebar -->
+            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+              
+                <ul class="nav">
+                    <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                </ul>
+               
+                <ul class="nav hidden-xs" id="lg-menu">
+                     <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+
+                    <li><%= link_to() do %>
+                        <i class="fa fa-exchange"></i> Trades
+                        <% end %>
+                        <ul class="nav nav-second-level collapse-in">
+                            <li><%= link_to "Pick Up", posted_shifts_path %> </li>
+                        </ul>       
+                    </li>
+                    <li><%= link_to(dashboard_index_path) do %>
+                        <i class="fa fa-rss"></i> News
+                        <% end %>
+                    </li>
+                    <li><%= link_to(calendar_index_path, method: :get) do %>
+                        <i class="fa fa-calendar"></i> Calendar
+                        <% end %>
+                    </li>
+                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
+                </ul>
+                <ul class="list-unstyled hidden-xs" id="sidebar-footer">
+                    <li>
+                      <h3><%= link_to 'ESTC-CEPE', root_path %></h3>
+                    </li>
+                </ul>
+              
+                <!-- tiny only nav-->
+              <ul class="nav visible-xs" id="xs-menu">
+                    <li><%= link_to(calendar_index_path, method: :get) do %>
+                        <i class="fa fa-calendar"></i>
+                        <% end %>
+                    </li>
+                    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                </ul>
+              
+            </div>
+            <!-- /sidebar -->
+          
+            <!-- main right col -->
+            <div class="column col-sm-10 col-xs-11" id="main">
+                
+                <!-- top nav -->
+                 <nav class="navbar navbar-inverse nav-color">
+                    <div class="container-fluid">
+                        <div class="navbar-header text-change">
+                        <%= link_to 'ESTC-CEPE', root_path, {:class => "navbar-brand"} %> </div>
+                         <% if signed_in? %>
+                    <ul class="nav navbar-nav navbar-right text-change">
+                        <li><%= link_to(profile_path(profile_user.id)) do %>
+                            <i class="fa fa-user"></i> <%= profile_user.fullname %>
+                        <% end %>
+                        </li>
+
+                        <li><%= link_to(destroy_user_session_path, method: :delete) do %>
+                            <i class="fa fa-sign-out"></i> Logout
+                        <% end %>
+                        </li>
+                    </ul>
+                <% else %>
+                    <ul class="nav navbar-nav navbar-right text-change">
+                        <li><%= link_to(new_user_registration_path) do %>
+                            <i class="fa fa-user-plus"></i> Sign Up
+                        <% end %>
+                        </li>
+
+                        <li><%= link_to(new_user_session_path) do %>
+                            <i class="fa fa-sign-in"></i> Login
+                        <% end %>
+                        </li>
+                    </ul>
+                <% end %>
+        </div>
+    </nav>
+                      
+                        <!-- content -->                      
+                      <div class="row">
+                      <%= yield %>
+      </div>
+  </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    
+    $('[data-toggle=offcanvas]').click(function() {
+    $(this).toggleClass('visible-xs text-center');
+    $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+    $('.row-offcanvas').toggleClass('active');
+    $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+    $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+    $('#btnShow').toggle();
+});
+</script>
+</body>
+</html>
