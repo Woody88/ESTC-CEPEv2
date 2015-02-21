@@ -38,6 +38,27 @@ class PostedShiftsController < ApplicationController
     respond_with(@posted_shift)
   end
 
+  def pick_up
+
+=begin
+//If click on pick up this trade shift object 
+@seller = User.find(params[:tid])
+      @buyer = User.find(current_user.id)
+      @shift = @seller.shifts.find(params[:sid])
+      @bshift = @buyer.shifts.find_by(:date => @shift.date)
+      if @bshift.nil? or !@bshift.overlaps?(@shift)
+        @nshift = @buyer.shifts.new
+        @nshift = @shift.dup
+        @nshift.owner_id = @buyer.id
+        @nshift.shift_posted = "Not Posted"
+        @nshift.save
+        @shift.posted_shift.status = "Traded"
+        @shift.posted_shift.save
+        @shift.save
+        @shift.destroy
+      end
+=end
+  end 
   private
     def set_posted_shift
       @posted_shift = PostedShift.find(params[:id])
