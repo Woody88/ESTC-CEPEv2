@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_one :profile
   after_create :build_profile
 
-  has_many :shifts, foreign_key: "owner"
+  has_many :shifts, foreign_key: "current_owner"
 
   def build_profile
   	s = SecureRandom.urlsafe_base64(8)

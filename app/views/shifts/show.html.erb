@@ -7,27 +7,22 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @shift.date %>
+  <%= @shift.date.to_date.to_s(:long) %>
 </p>
 
 <p>
   <strong>Start stime:</strong>
-  <%= @shift.start_time %>
+  <%= @shift.start_time.to_s(:time) %>
 </p>
 
 <p>
   <strong>Finish time:</strong>
-  <%= @shift.finish_time %>
+  <%= @shift.finish_time.to_s(:time) %>
 </p>
 
 <p>
   <strong>Original owner:</strong>
   <%= @shift.original_owner %>
-</p>
-
-<p>
-  <strong>Current owner:</strong>
-  <%= @shift.current_owner %>
 </p>
 
 <p>

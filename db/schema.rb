@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220221636) do
+ActiveRecord::Schema.define(version: 20150222144237) do
 
   create_table "microposts", force: true do |t|
     t.text     "content"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150220221636) do
     t.string   "status",      default: "Not Traded"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "st_id"
   end
 
   create_table "profiles", force: true do |t|

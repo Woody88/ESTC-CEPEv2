@@ -19,9 +19,9 @@
     <% @shifts.each do |shift| %>
       <tr>
         <td><%= shift.position %></td>
-        <td><%= shift.date %></td>
-        <td><%= shift.start_time %></td>
-        <td><%= shift.finish_time %></td>
+        <td><%= shift.date.to_date.to_s(:long) %></td>
+        <td><%= shift.start_time.to_s(:time) %></td>
+        <td><%= shift.finish_time.to_s(:time) %></td>
         <td><%= shift.original_owner %></td>
         <td><%= shift.current_owner %></td>
         <td><%= shift.shift_id %></td>

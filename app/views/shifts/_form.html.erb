@@ -4,7 +4,9 @@
   
   <div class="row">
     <div class="col-md-3">
-      <%= f.input :position, collection: Shift::POSITIONS %>
+      <%= f.input :position, as: :select do %>
+        <%=f.select:position, Shift::POSITIONS %>
+      <% end %>
     </div>
   </div>
   <div class="row">

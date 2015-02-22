@@ -9,22 +9,28 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <%= f.input :date, as: :date, as: :string, input_html:{value: @shift.date} %>
+      <%= f.input :date, as: :date, as: :string, input_html:{value: @shift.date.to_date.to_s(:long)} %>
     </div>
   </div>
 
   <div class="row">
     <div class="columns col-md-2">
-      <%= f.input :start_time, as: :time, as: :string,input_html:{value: @shift.start_time} %>
+      <%= f.input :start_time, as: :time, as: :string,input_html:{value: @shift.start_time.to_s(:time)} %>
     </div>
   </div>
 
   <div class="row">
     <div class="columns col-md-2">
-    <%= f.input :finish_time, as: :time, as: :string, input_html:{value: @shift.finish_time}%>
+    <%= f.input :finish_time, as: :time, as: :string, input_html:{value: @shift.finish_time.to_s(:time)}%>
     </div>
   </div>
-
+  
+  <div class="row">
+    <div class="columns col-md-2">
+    <%= f.input :st_id, input_html:{value: @shift.shift_id}%>
+    </div>
+  </div>
+  
   <div class="row">
     <div class="col-md-3">
       <%= f.input :status %>

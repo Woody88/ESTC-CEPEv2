@@ -15,6 +15,7 @@ class PostedShiftsController < ApplicationController
   def new 
     @shift = Shift.find_by(:shift_id => params[:sid]) 
     @posted_shift = PostedShift.new
+    @posted_shift.st_id = params[:sid]
     respond_with(@posted_shift)
   end 
 
@@ -22,8 +23,11 @@ class PostedShiftsController < ApplicationController
   end
 
   def create
-    @shift = Shift.find(params[:posted_shift][:shift_id])
+    @user = User.find(current_user.id)
+    @shift = @user.shifts.find_by(:shift_id => params[:posted_shift][:st_id], :current_owner => current_user.id)
     @posted_shift = PostedShift.new(posted_shift_params)
+    @posted_shift.seller_id = current_user.id
+    @posted_shift.st_id = @shift.shift_id
     @posted_shift.save
     respond_with(@posted_shift)
   end

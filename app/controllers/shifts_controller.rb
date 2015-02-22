@@ -5,7 +5,7 @@ class ShiftsController < ApplicationController
   respond_to :html
 
   def index
-    @shifts = Shift.all
+    @shifts = Shift.all.where(:current_owner => current_user.id)
     respond_to do |format| 
       format.html
       format.js { render :json => @shifts } 
@@ -29,7 +29,7 @@ class ShiftsController < ApplicationController
     @shift.original_owner = @shift.current_owner = current_user.id
     @shift.shift_posted = "Not Posted"
     @shift.save
-    respond_with(@shift.id)
+    respond_with(@shift)
   end
 
   def update
