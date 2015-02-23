@@ -21,8 +21,6 @@ class Shift < ActiveRecord::Base
 	def adjust_time_and_date
 		self.start_time = DateTime.parse("#{date.to_date.to_s} #{start_time.to_s(:time)}")
 		self.finish_time = DateTime.parse("#{date.to_date.to_s} #{finish_time.to_s(:time)}")
-		s = SecureRandom.urlsafe_base64(8)
-		self.shift_id = s
 	end
 
 	def overlaps?(other)
@@ -35,7 +33,7 @@ class Shift < ActiveRecord::Base
       :title => self.position,
       :start => start_time,
       :end => finish_time,
-      :url => Rails.application.routes.url_helpers.shift_path(shift_id),
+   
     }
   end
 end

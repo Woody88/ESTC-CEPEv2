@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150222144237) do
     t.string   "status",      default: "Not Traded"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "st_id"
+    t.integer  "st_id"
   end
 
   create_table "profiles", force: true do |t|
