@@ -1,0 +1,41 @@
+<%= simple_form_for(@posted_shift) do |f| %>
+  <%= f.error_notification %>
+
+  
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :position,input_html:{value: @posted_shift.position}, readonly: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :date, as: :date, as: :string, input_html:{value: @posted_shift.date.to_date.to_s(:long)} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns col-md-2">
+      <%= f.input :start_time, as: :time, as: :string,input_html:{value: @posted_shift.start_time.to_s(:time)} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns col-md-2">
+    <%= f.input :finish_time, as: :time, as: :string, input_html:{value: @posted_shift.finish_time.to_s(:time)}%>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="columns col-md-2">
+    <%= f.input :st_id, input_html:{value: @posted_shift.st_id}%>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :status %>
+    </div>
+  </div>
+    <%= f.button :submit %>
+  </div>
+<% end %>

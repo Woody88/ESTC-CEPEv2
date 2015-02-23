@@ -13,6 +13,7 @@ class ShiftsController < ApplicationController
   end
 
   def show
+    #@shift = Shift.find(params[:id])
     respond_with(@shift)
   end
 
@@ -29,23 +30,24 @@ class ShiftsController < ApplicationController
     @shift.original_owner = @shift.current_owner = current_user.id
     @shift.shift_posted = "Not Posted"
     @shift.save
-    respond_with(@shift)
+    respond_with(@shift, :location => shift_path(@shift.shift_id))
   end
 
   def update
-    @shift = Shift.find(params[:id])
+    @shift = Shift.find_by(params[:shift][:shift_id], :current_owner => current_user.id)
     @shift.update(shift_params)
-    respond_with(@shift)
+    respond_with(@shift, :location => shift_path(@shift.shift_id))
   end
 
   def destroy
+    @shift = Shift.find(params[:id])
     @shift.destroy
     respond_with(@shift)
   end
 
   private
     def set_shift
-      @shift = Shift.find(params[:id])
+      @shift = Shift.find_by(:shift_id => params[:id], :current_owner => current_user.id)
     end
 
     def shift_params

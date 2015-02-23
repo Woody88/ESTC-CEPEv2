@@ -9,27 +9,28 @@ class PostedShiftsController < ApplicationController
   end
 
   def show
-    respond_with(@posted_shift)
+    respond_with(@posted_shift, :location => posted_shifts_url)
   end
 
   def new 
     @shift = Shift.find_by(:shift_id => params[:sid]) 
     @posted_shift = PostedShift.new
     @posted_shift.st_id = params[:sid]
-    respond_with(@posted_shift)
+    respond_with(@posted_shift, :location => @posted_shifts_path)
   end 
 
   def edit
   end
 
   def create
-    @user = User.find(current_user.id)
+    @user = Profile.find(current_user.id)
     @shift = @user.shifts.find_by(:shift_id => params[:posted_shift][:st_id], :current_owner => current_user.id)
     @posted_shift = PostedShift.new(posted_shift_params)
     @posted_shift.seller_id = current_user.id
     @posted_shift.st_id = @shift.shift_id
+    @shift.shift_posted = "Posted"
     @posted_shift.save
-    respond_with(@posted_shift)
+    respond_with(@posted_shift, :location => @posted_shifts_path)
   end
 
   def update
@@ -38,34 +39,32 @@ class PostedShiftsController < ApplicationController
   end
 
   def destroy
+    @posted_shift = PostedShift.find(params[:id])
     @posted_shift.destroy
     respond_with(@posted_shift)
   end
 
   def pick_up
-
-=begin
-//If click on pick up this trade shift object 
-@seller = User.find(params[:tid])
-      @buyer = User.find(current_user.id)
-      @shift = @seller.shifts.find(params[:sid])
+      #If click on pick up this trade shift object 
+      @buyer = Profile.find_by(:user_id => current_user.id)
+      @shift = Shift.find_by(:shift_id => params[:sid], :current_owner => params[:uid] )
       @bshift = @buyer.shifts.find_by(:date => @shift.date)
-      if @bshift.nil? or !@bshift.overlaps?(@shift)
-        @nshift = @buyer.shifts.new
-        @nshift = @shift.dup
-        @nshift.owner_id = @buyer.id
-        @nshift.shift_posted = "Not Posted"
-        @nshift.save
-        @shift.posted_shift.status = "Traded"
-        @shift.posted_shift.save
-        @shift.save
-        @shift.destroy
+      if @bshift.nil? or !@bshift.overlaps?(@shift) 
+        @trade = Shift.confirm_trade(@shift)
+        @trade.current_owner = current_user.id
+        @trade.shift_posted = "Not Posted"
+        if @trade.save
+          @shift.destroy
+          
+        end 
+        binding.pry
+        respond_with(@trade, :location => shifts_url)
       end
-=end
   end 
+
   private
     def set_posted_shift
-      @posted_shift = PostedShift.find(params[:id])
+      @posted_shift = PostedShift.find_by(:st_id => params[:id])
     end
 
     def posted_shift_params
