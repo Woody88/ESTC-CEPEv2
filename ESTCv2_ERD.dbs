@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ESTC-CEPE" id="Project3013307" template="Default" database="Sqlite" >
+	<schema name="Default" schemaname="Default" >
+		<table name="Employee" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="email" type="varchar" length="150" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="150" jt="12" mandatory="y" />
+			<column name="First Name" type="varchar" length="100" jt="12" />
+			<column name="Last Name" type="varchar" length="100" jt="12" />
+			<column name="Station" type="varchar" length="3" jt="12" mandatory="y" />
+			<index name="Pk_Employee" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="Language" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="lang" type="varchar" length="30" jt="12" mandatory="y" />
+			<index name="Pk_Language" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="Position" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="position" type="varchar" length="20" jt="12" mandatory="y" />
+			<index name="Pk_Position" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="Qualifications" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<index name="Pk_Qualifications" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_qualifications_employee" to_schema="Default" to_table="Employee" >
+				<fk_column name="id" pk="id" />
+				<comment><![CDATA[Reference to Employee]]></comment>
+			</fk>
+			<fk name="fk_qualifications_position" to_schema="Default" to_table="Position" >
+				<fk_column name="id" pk="id" />
+				<comment><![CDATA[Reference to positions]]></comment>
+			</fk>
+			<fk name="fk_qualifications_speak" to_schema="Default" to_table="Speak" >
+				<fk_column name="id" pk="id" />
+				<comment><![CDATA[Reference to what Language the employee can speak]]></comment>
+			</fk>
+		</table>
+		<table name="Shift" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="date" type="date" jt="91" mandatory="y" />
+			<column name="start" type="time" jt="92" mandatory="y" />
+			<column name="end" type="time" jt="92" mandatory="y" />
+			<column name="Position" type="varchar" length="150" jt="12" mandatory="y" />
+			<column name="State" type="varchar" length="50" jt="12" mandatory="y" >
+				<defo>Not Traded</defo>
+			</column>
+			<column name="Split" type="boolean" jt="-7" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="lang" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="Original_owner" type="boolean" jt="-7" />
+			<index name="Pk_Shift" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_shift_employee" to_schema="Default" to_table="Employee" >
+				<fk_column name="id" pk="id" />
+			</fk>
+		</table>
+		<table name="Speak" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="level" type="integer" jt="4" mandatory="y" />
+			<index name="Pk_Speak" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_speak_language" to_schema="Default" to_table="Language" >
+				<fk_column name="id" pk="id" />
+				<comment><![CDATA[Reference to Language table]]></comment>
+			</fk>
+		</table>
+		<table name="Table_0" />
+		<table name="TradeShift" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="date" type="date" jt="91" mandatory="y" />
+			<column name="start" type="time" jt="92" />
+			<column name="end" type="time" jt="92" />
+			<column name="split" type="boolean" jt="-7" />
+			<column name="Position" type="varchar" length="30" jt="12" />
+			<column name="State" type="varchar" length="30" jt="12" />
+			<column name="lang" type="varchar" length="30" jt="12" />
+			<column name="Original_owner" type="boolean" jt="-7" />
+			<index name="Pk_PostedShift" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_postedshift_shift" to_schema="Default" to_table="Shift" >
+				<fk_column name="id" pk="id" />
+			</fk>
+			<fk name="fk_tradeshift_employee" to_schema="Default" to_table="Employee" >
+				<fk_column name="id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<layout id="Layout3013311" name="ESTC-CEPE" show_relation_columns="y" >
+		<entity schema="Default" name="Language" color="b2cdf7" x="45" y="45" />
+		<entity schema="Default" name="Speak" color="b2cdf7" x="45" y="225" />
+		<entity schema="Default" name="Qualifications" color="b2cdf7" x="180" y="180" />
+		<entity schema="Default" name="Position" color="b2cdf7" x="120" y="360" />
+		<entity schema="Default" name="Employee" color="b2cdf7" x="420" y="135" />
+		<entity schema="Default" name="Shift" color="b2cdf7" x="600" y="330" />
+		<entity schema="Default" name="TradeShift" color="b2cdf7" x="810" y="210" />
+	</layout>
+</project>

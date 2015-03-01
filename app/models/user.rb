@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :shifts, foreign_key: "current_owner"
 
   def build_profile
+    biding,pr
   	s = SecureRandom.urlsafe_base64(8)
   	Profile.create(user: self, :p_id => s)
   end

@@ -1,6 +1,6 @@
 class ShiftsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_shift, only: [:show, :edit, :update, :destroy]
+  before_action :set_shift, only: [:show, :edit, :update, :destroy, :trade]
 
   respond_to :html, :json, :xml
 
@@ -31,6 +31,10 @@ class ShiftsController < ApplicationController
     end
     respond_with(@shift)
   end
+
+  def trade
+    @profile = Profile.all
+  end 
 
   def update
     @shift = Shift.find_by(params[:id])
